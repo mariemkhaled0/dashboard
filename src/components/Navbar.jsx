@@ -31,7 +31,11 @@ const Navbar = ({ language, handleLanguageToggle }) => {
           <a href="#">{language === "en" ? "Report" : "تقرير"}</a>
         </li>
       </ul>
-      <div className={language == "ar" ? "nav-icons arabic" : "nav-icons"}>
+      <div
+        className={
+          language === "ar" ? "nav-icons arabic arabic-arrow" : "nav-icons"
+        }
+      >
         <div className={toggleDropList ? "icons-toggle" : "icons"}>
           <img
             className="translation"
@@ -42,15 +46,14 @@ const Navbar = ({ language, handleLanguageToggle }) => {
           <img src={messageIcon} alt="messageIcon" />
           <img src={messageIcon2} alt="messageIcon" />
         </div>
-        <div className={language == "ar" ? "info arabic" : "info"}>
+        <div className={language === "ar" ? "info arabic " : "info"}>
           <img src={womenIcon} alt="womenIcon" />
-          <img className="arrow" src={chevron} alt="chevron" />
-          <img
-            onClick={handleToggle}
-            className="toggle-arrow"
-            src={chevron}
-            alt="chevron"
-          />
+          <div>
+            <img className="arrow" src={chevron} alt="chevron" />
+          </div>
+          <div onClick={handleToggle}>
+            <img className="toggle-arrow" src={chevron} alt="chevron" />
+          </div>
         </div>
       </div>
     </nav>

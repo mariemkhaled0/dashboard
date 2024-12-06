@@ -506,7 +506,7 @@ label span {
     gap: 10px;
   }
   .container-p {
-    padding: 30px 0;
+    padding: 30px 10px;
   }
   .form {
     flex-grow: 0;
@@ -527,5 +527,8 @@ label span {
   }
   .table-wrapper {
     width: calc(100vw - 200px);
+  }
+  .arabic-arrow {
+    padding-left: 30px;
   }
 }
