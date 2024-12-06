@@ -21,7 +21,7 @@ const Data = ({ language }) => {
       </div>
       <div className={language === "ar" ? "data arabic-text " : "data"}>
         <p>{language === "ar" ? "المستخدمين النشطين" : "Active users"}</p>
-        <h1>{language === "ar" ? "٢,٣١٨" : "2,318"}</h1>
+        <h1>{language === "ar" ? "٢,٣١٨" : "2"}</h1>
       </div>
     </section>
   );

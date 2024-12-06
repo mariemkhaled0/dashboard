@@ -31,12 +31,9 @@ const Form = ({ language }) => {
           <span className="required">*</span>
         </label>
 
-        <input
+        <textarea
+          placeholder={language === "ar" ? " الوصف" : "Description"}
           className={language === "ar" ? "arabic-text" : ""}
-          type="text"
-          id="Description"
-          name="Description"
-          placeholder={language === "ar" ? " الوصف" : "description"}
         />
 
         <div className="">
@@ -65,6 +62,7 @@ const Form = ({ language }) => {
         <input
           id="cut-off-date"
           name="date"
+          type="date"
           placeholder={language === "ar" ? "اختر تاريخ" : "Select a date"}
           className={language === "ar" ? "arabic-text" : ""}
         />

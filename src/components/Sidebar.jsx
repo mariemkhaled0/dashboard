@@ -14,24 +14,41 @@ import settings from "../assets/Setting-Gear.svg";
 import privacyIcon from "../assets/PrivacyShield.svg";
 import chat from "../assets/Chat.svg";
 
-const SidebarSection = ({ title, items, toggle }) => (
+const SidebarSection = ({ title, items, toggle, language }) => (
   <div className="iconsContent-container">
     <div className="sidebar-icons">
-      <p className="title">{title}</p>
+      <p className={`title ${language === "ar" ? "title-arabic" : ""}`}>
+        {title}
+      </p>
       <div className="icons-container">
         {items.map((item, index) => (
-          <SidebarItem key={index} item={item} toggle={toggle} />
+          <SidebarItem
+            key={index}
+            item={item}
+            toggle={toggle}
+            language={language}
+          />
         ))}
       </div>
     </div>
   </div>
 );
 
-const SidebarItem = ({ item, toggle }) => (
-  <div className="sidebar-content">
+const SidebarItem = ({ item, toggle, language }) => (
+  <div
+    className={
+      language == "ar" && toggle
+        ? "sidebar-content-arabic"
+        : language === "ar" && !toggle
+        ? "sidebar-content"
+        : "sidebar-content"
+    }
+  >
     <div className="sidebar-text-container">
       <img src={item.icon} alt={`${item.label} Icon`} />
-      <p className={toggle ? "show" : "sidebar-text"}>{item.label}</p>
+      <p className={toggle ? "show" : "sidebar-text"}>
+        {language === "ar" ? item.labelAr : item.label}
+      </p>
     </div>
     {item.notification || item.extraIcon ? (
       <div className={toggle ? "show inline-content" : "sidebar-text"}>
@@ -44,35 +61,48 @@ const SidebarItem = ({ item, toggle }) => (
   </div>
 );
 
-const Sidebar = ({ toggle, handleToggle }) => {
+const Sidebar = ({ toggle, handleToggle, language }) => {
   const generalItems = [
-    { label: "Home", icon: home },
-    { label: "Messages", icon: mail, notification: 2 },
-    { label: "Schedule", icon: calender, notification: 3 },
-    { label: "News", icon: barChart },
-    { label: "Recruitment", icon: form },
-    { label: "Project", icon: briefCase, extraIcon: true },
-    { label: "Folders", icon: multiFolder },
+    { label: "Home", labelAr: "الصفحة الرئيسية", icon: home },
+    { label: "Messages", labelAr: "الرسائل", icon: mail, notification: 2 },
+    {
+      label: "Schedule",
+      labelAr: "الجدول الزمني",
+      icon: calender,
+      notification: 3,
+    },
+    { label: "News", labelAr: "الأخبار", icon: barChart },
+    { label: "Recruitment", labelAr: "التوظيف", icon: form },
+    { label: "Project", labelAr: "المشروع", icon: briefCase, extraIcon: true },
+    { label: "Folders", labelAr: "المجلدات", icon: multiFolder },
   ];
 
   const mySpaceItems = [
-    { label: "Activity", icon: flag },
-    { label: "Shared", icon: multiUser },
-    { label: "Privacy", icon: privacyIcon },
+    { label: "Activity", labelAr: "النشاط", icon: flag },
+    { label: "Shared", labelAr: "المشتركة", icon: multiUser },
+    { label: "Privacy", labelAr: "الخصوصية", icon: privacyIcon },
   ];
 
   const supportItems = [
-    { label: "Settings", icon: settings },
-    { label: "Help", icon: multiUser },
-    { label: "Chats", icon: chat, notification: 3 },
+    { label: "Settings", labelAr: "الإعدادات", icon: settings },
+    { label: "Help", labelAr: "مساعدة", icon: multiUser },
+    { label: "Chats", labelAr: "الدردشات", icon: chat, notification: 3 },
   ];
 
   return (
-    <aside className={toggle ? "sidebar-open" : "sidebar"}>
+    <aside
+      className={
+        toggle && language === "ar"
+          ? "sidebar-open-arabic"
+          : toggle
+          ? "sidebar-open"
+          : "sidebar"
+      }
+    >
       <div className="sidebar-header">
         <button className="logo-btn" onClick={handleToggle}>
           <img className="logo" src={logo} alt="Procoor Logo" />
-          {toggle && <p>Procoor</p>}
+          {toggle && <p>{language === "ar" ? "بروكور" : "Procoor"}</p>}
         </button>
         <div className="search-container">
           {toggle ? (
@@ -81,7 +111,7 @@ const Sidebar = ({ toggle, handleToggle }) => {
               <input
                 className="search-input"
                 type="text"
-                placeholder="Search"
+                placeholder={language === "ar" ? "ابحث" : "Search"}
               />
             </div>
           ) : (
@@ -90,9 +120,24 @@ const Sidebar = ({ toggle, handleToggle }) => {
         </div>
       </div>
 
-      <SidebarSection title="General" items={generalItems} toggle={toggle} />
-      <SidebarSection title="MySpace" items={mySpaceItems} toggle={toggle} />
-      <SidebarSection title="Support" items={supportItems} toggle={toggle} />
+      <SidebarSection
+        title={language === "ar" ? "عام" : "General"}
+        items={generalItems}
+        toggle={toggle}
+        language={language}
+      />
+      <SidebarSection
+        title={language === "ar" ? "مساحتي" : "MySpace"}
+        items={mySpaceItems}
+        toggle={toggle}
+        language={language}
+      />
+      <SidebarSection
+        title={language === "ar" ? "الدعم" : "Support"}
+        items={supportItems}
+        toggle={toggle}
+        language={language}
+      />
     </aside>
   );
 };

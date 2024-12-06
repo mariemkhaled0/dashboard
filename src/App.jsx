@@ -4,16 +4,29 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   const [toggle, setToggle] = useState(false);
+  const [language, setLanguage] = useState("en");
+
+  const handleLanguageToggle = () => {
+    setLanguage((prevLang) => (prevLang === "en" ? "ar" : "en"));
+  };
   const handleToggle = () => {
     setToggle(!toggle);
   };
   return (
-    <div className="container">
+    <div className={language === "ar" ? "arabic-container" : "container"}>
       <div>
-        <Sidebar toggle={toggle} handleToggle={handleToggle} />
+        <Sidebar
+          language={language}
+          toggle={toggle}
+          handleToggle={handleToggle}
+        />
       </div>
 
-      <MainContent toggle={toggle} />
+      <MainContent
+        language={language}
+        toggle={toggle}
+        handleLanguageToggle={handleLanguageToggle}
+      />
     </div>
   );
 }

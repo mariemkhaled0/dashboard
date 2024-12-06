@@ -4,15 +4,19 @@ import Data from "./Data";
 import Form from "./Form";
 import Table from "./Table";
 
-const MainContent = ({ toggle }) => {
-  const [language, setLanguage] = useState("en");
-
-  const handleLanguageToggle = () => {
-    setLanguage((prevLang) => (prevLang === "en" ? "ar" : "en"));
-  };
-
+const MainContent = ({ toggle, language, handleLanguageToggle }) => {
   return (
-    <section className={toggle ? "main-open" : "main"}>
+    <section
+      className={
+        toggle && language == "ar"
+          ? "main-open"
+          : language === "ar"
+          ? "main-arabic"
+          : language === "en" && toggle
+          ? "main-open"
+          : "main"
+      }
+    >
       <header>
         <Navbar
           language={language}
