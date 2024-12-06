@@ -500,6 +500,9 @@ label span {
   .table-wrapper {
     width: calc(100vw - 200px);
   }
+  .toggle-arrow {
+    width: 20px;
+  }
 }
 @media (max-width: 544px) {
   .nav-ul {
@@ -511,6 +514,9 @@ label span {
   .form {
     flex-grow: 0;
     width: 70%;
+  }
+  .toggle-arrow {
+    width: 24px;
   }
 }
 @media (max-width: 454px) {
@@ -530,5 +536,8 @@ label span {
   }
   .arabic-arrow {
     padding-left: 30px;
+  }
+  .toggle-arrow {
+    width: 25px;
   }
 }
