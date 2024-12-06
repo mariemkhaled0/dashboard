@@ -486,6 +486,9 @@ label span {
   .table-wrapper {
     width: calc(100vw - 200px);
   }
+  .data {
+    width: 40%;
+  }
 }
 
 @media (max-width: 678px) {
@@ -504,6 +507,9 @@ label span {
   }
   .toggle-arrow {
     width: 20px;
+  }
+  .data {
+    width: 40%;
   }
 }
 @media (max-width: 544px) {
@@ -541,5 +547,8 @@ label span {
   }
   .toggle-arrow {
     width: 25px;
+  }
+  .data {
+    width: 90%;
   }
 }
